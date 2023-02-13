@@ -16,3 +16,9 @@
 - Function for jumping over opponents piece (score)
 - Function for reaching the end of the table (turn into king)
 - Function to remove a piece after scoring
+
+
+[InVision](https://deonc856597.invisionapp.com/teams/people/members?nameSort=asc)
+
+
+[Trello](https://trello.com/w/todo20381224/members?utm_source=eval-email&utm_medium=email&utm_campaign=team-invite)
