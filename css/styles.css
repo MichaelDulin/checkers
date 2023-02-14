@@ -1,0 +1,98 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: red;
+}
+
+h1 {
+  text-align: center;
+  border: 3px solid black;
+  height: 90px;
+  padding: 20px;
+  background-color: yellow;
+  /* margin-top: 25px; */
+
+}
+
+h2 {
+  text-align: center;
+  border: 3px solid black;
+  background-color: yellow;
+  height: 90px;
+  padding: 20px;
+  font-size: x-large;
+  font-weight: bold;
+}
+
+
+.home-link {
+  text-decoration: none;
+  color: black;
+  background-color: yellow;
+  font-size: x-large;
+  margin-left: 90%;
+  border: 3px solid black;
+  padding: 15px;
+}
+
+.win-loss-list {
+  font-size: x-large;
+  margin-left: 43%;
+}
+
+ul {
+  font-size: x-large;
+}
+
+.about-list {
+  padding-left: 0px;
+}
+
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.high-score,
+.about-us {
+  border: 3px solid black;
+  background-color: yellow;
+  padding: 25px;
+  font-weight: bold;
+  font-size: x-large;
+}
+
+
+.about-us {
+  margin-left: 250px;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.about-section {
+  border: 3px solid black;
+  background-color: yellow;
+  padding-top: 50px;
+  font-weight: bold;
+  font-size: x-large;
+  height: 150px;
+  text-align: center;
+}
+
+.idk {
+  border: 3px solid black;
+  background-color: yellow;
+
+}
