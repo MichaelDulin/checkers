@@ -33,3 +33,6 @@
 **Domain Modeling**
 
 <img width="886" alt="image" src="https://user-images.githubusercontent.com/73040864/218589623-7c588e59-84c1-455c-aa3d-3857d6fd428b.png">
+
+<img width="581" alt="image" src="https://user-images.githubusercontent.com/73040864/218812781-50f494db-7143-4a3c-8bbf-8ba629b80465.png">
+
