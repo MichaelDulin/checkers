@@ -1,8 +1,11 @@
+'use strict';
+
 let p1Chips = 12;
 let p2Chips = 12;
 
-//TODO: Create virtual layout of board (playable vs unplayble spaces
+//Done: Create virtual layout of board (playable vs unplayble spaces
 function renderBoard() {
+  //Done: Assign class name 'playable' to all playable spaces
   function calcPlayableSpaces() {
     for (let colRef = 1; colRef < 9; colRef++) {
       if (colRef % 2 === 0) { //Select even rows
@@ -17,7 +20,7 @@ function renderBoard() {
       }
     }
   }
-  //TODO: Calculate empty playable spaces
+  //Done: Calculate empty playable spaces
   function calcEmptySpaces() {
     let colEmpty = 4;
     let colRow = 2;
@@ -40,8 +43,3 @@ function renderBoard() {
 
 renderBoard();
 
-function playerChips() {
-
-  for (let i = 0; i < p1; i++)
-  
-};
