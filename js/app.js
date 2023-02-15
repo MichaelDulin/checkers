@@ -36,6 +36,7 @@ function renderBoard() {
       }
     }
   }
+  
   //TODO: implement player 1 and 2 chip placement initial board setup
   calcEmptySpaces();
   calcPlayableSpaces();
