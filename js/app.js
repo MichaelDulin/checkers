@@ -36,8 +36,8 @@ function renderBoard() {
 
   //TODO: implement player 1 and 2 chip placement initial board setup
   function player1() {
-    let refRow = 7;
-    let refColumn = 5;
+    let refRow = 9;
+    let refColumn = 4;
     for (let i = 1; i < refRow; i++) {
       for (let j = 1; j < refColumn; j++) {
         if (j % 2 === 1) {
@@ -63,10 +63,10 @@ function renderBoard() {
   };
 
   function player2() {
-    let refRow = 7;
+    let refRow = 9;
     let refColumn = 9;
     for (let i = 1; i < refRow; i++) {
-      for (let j = 5; j < refColumn; j++) {
+      for (let j = 6; j < refColumn; j++) {
         if (j % 2 === 1) {
           if (i % 2 === 1) {
             document.getElementById(`r${i}c${j}`).textContent = 'piecep2';
@@ -77,7 +77,7 @@ function renderBoard() {
       }
     }
     for (let i = 1; i < refRow; i++) {
-      for (let j = 5; j < refColumn; j++) {
+      for (let j = 6; j < refColumn; j++) {
         if (j % 2 === 0) {
           if (i % 2 === 0) {
             console.log(`r${i}c${j}`);
