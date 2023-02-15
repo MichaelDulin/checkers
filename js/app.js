@@ -33,15 +33,43 @@ function renderBoard() {
       }
     }
   }
+
   //TODO: implement player 1 and 2 chip placement initial board setup
+  function player1() {
+    let spaces = 24;
+    let refRow = 8;
+    let refColumn = 3;
+    for (let i = 1; i < spaces; i += 2) {
+      for (let j = 1; j < refColumn; j++) { 
+      let simple = document.getElementById(`r${i}c${j}`);
+      console.log(`r${i}c${j}`);
+      console.log(simple);
+      document.getElementById(`r${i}c${j}`).classname = 'piece';
+      document.getElementById(`r${i}c${j}`).textContent = 'piece';
+
+      }
+    }
+  };
+
+  function player2() {
+    let spaces = 24;
+    let refRow = 8;
+    let refColumn = 3;
+    for (let i = 0; i < spaces; i += 2) {
+      for (let j = 0; j < refColumn; j++) {
+      document.getElementById(`r${spaces[i]}c${refRow[j]}`).classname = 'piece';
+      }
+    }
+  };
+
   calcEmptySpaces();
   calcPlayableSpaces();
+  player1();
 }
 
 renderBoard();
 
-function playerChips() {
+// function renderChips() {
 
-  for (let i = 0; i < p1; i++)
   
-};
+// }
