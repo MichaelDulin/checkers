@@ -3,7 +3,7 @@
 }
 
 body {
-  background-color: red;
+  background-color: rgb(174, 160, 160);
 }
 
 h1 {
@@ -11,7 +11,7 @@ h1 {
   border: 3px solid black;
   height: 90px;
   padding: 20px;
-  background-color: yellow;
+  background-color: rgb(85, 85, 82);
   /* margin-top: 25px; */
 
 }
@@ -19,7 +19,7 @@ h1 {
 h2 {
   text-align: center;
   border: 3px solid black;
-  background-color: yellow;
+  background-color: rgb(85, 85, 82);
   height: 90px;
   padding: 20px;
   font-size: x-large;
@@ -30,7 +30,7 @@ h2 {
 .home-link {
   text-decoration: none;
   color: black;
-  background-color: yellow;
+  background-color: rgb(85, 85, 82);
   font-size: x-large;
   margin-left: 90%;
   border: 3px solid black;
@@ -60,7 +60,7 @@ ul {
 .high-score,
 .about-us {
   border: 3px solid black;
-  background-color: yellow;
+  background-color: rgb(85, 85, 82);
   padding: 25px;
   font-weight: bold;
   font-size: x-large;
@@ -83,7 +83,7 @@ a {
 
 .about-section {
   border: 3px solid black;
-  background-color: yellow;
+  background-color: rgb(85, 85, 82);
   padding-top: 50px;
   font-weight: bold;
   font-size: x-large;
@@ -93,6 +93,26 @@ a {
 
 .idk {
   border: 3px solid black;
-  background-color: yellow;
+  background-color: rgb(85, 85, 82);
 
+}
+
+/*For game.html*/
+.gameContainer {
+  display: grid;
+  grid-template-columns: 100px 100px 100px 100px 100px 100px 100px 100px;
+  grid-template-rows: 100px 100px 100px 100px 100px 100px 100px 100px;
+  justify-content: center;
+}
+
+.gameContainer div {
+  border: 2px solid black;
+}
+
+.playable {
+  background-color: black;
+}
+
+.empty {
+  background-color: red;
 }
