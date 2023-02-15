@@ -27,21 +27,73 @@ function renderBoard() {
     for (colEmpty; colEmpty < 6; colEmpty++) {
       if (colEmpty === 4) {
         for (colRow; colRow < 9; colRow += 2) {
-          document.getElementById(`r${colRow}c${colEmpty}`).className = 'empty';
+          document.getElementById(`r${colRow}c${colEmpty}`).className += 'empty';
         }
       } else {
         for (colRow = 1; colRow < 8; colRow += 2) {
-          document.getElementById(`r${colRow}c${colEmpty}`).className = 'empty';
+          document.getElementById(`r${colRow}c${colEmpty}`).className += 'empty';
         }
       }
     }
   }
-
-  //TODO: implement player 1 and 2 chip placement initial board setup
-
+  //DONE: implement player 1 and 2 chip placement initial board setup
+  function player1() {
+    let refRow = 9;
+    let refColumn = 4;
+    for (let i = 1; i < refRow; i++) {
+      for (let j = 1; j < refColumn; j++) {
+        if (j % 2 === 1) {
+          if (i % 2 === 1) {
+            console.log(`r${i}c${j}`);
+            document.getElementById(`r${i}c${j}`).textContent = 'piecep1';
+          }
+        }
+        document.getElementById(`r${i}c${j}`).className += 'piecep1';
+      }
+    }
+    for (let i = 1; i < refRow; i++) {
+      for (let j = 1; j < refColumn; j++) {
+        if (j % 2 === 0) {
+          if (i % 2 === 0) {
+            console.log(`r${i}c${j}`);
+            document.getElementById(`r${i}c${j}`).textContent = 'piecep1';
+          }
+        }
+        document.getElementById(`r${i}c${j}`).className += 'piecep1';
+      }
+    }
+  }
+  function player2() {
+    let refRow = 9;
+    let refColumn = 9;
+    for (let i = 1; i < refRow; i++) {
+      for (let j = 6; j < refColumn; j++) {
+        if (j % 2 === 1) {
+          if (i % 2 === 1) {
+            document.getElementById(`r${i}c${j}`).textContent = 'piecep2';
+          }
+        }
+        document.getElementById(`r${i}c${j}`).classname = 'piecep2';
+      }
+    }
+    for (let i = 1; i < refRow; i++) {
+      for (let j = 6; j < refColumn; j++) {
+        if (j % 2 === 0) {
+          if (i % 2 === 0) {
+            document.getElementById(`r${i}c${j}`).textContent = 'piecep2';
+          }
+        }
+        document.getElementById(`r${i}c${j}`).classname = 'piecep2';
+      }
+    }
+  }
   calcPlayableSpaces();
   calcEmptySpaces();
+  player1();
+  player2();
 }
 
 renderBoard();
+
+
 
