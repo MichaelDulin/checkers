@@ -62,4 +62,8 @@ function startNewGame(event) {
   window.location.href = 'game.html';
 }
 
+
+
+// TODO: Link scores of past games to scores.html
+
 startNewGame();
