@@ -1,3 +1,5 @@
+
+console.log ('hello world');
 let p1Chips = 12;
 let p2Chips = 12;
 
