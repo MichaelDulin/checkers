@@ -66,5 +66,9 @@ function renderBoard() {
 
 renderBoard();
 
+//TODO: implement move function
+
+//TODO: implement a jump (opponent )
+
 
 
