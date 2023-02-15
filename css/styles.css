@@ -112,3 +112,7 @@ a {
 .playable {
   background-color: black;
 }
+
+.empty {
+  background-color: red;
+}

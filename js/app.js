@@ -13,7 +13,7 @@ function renderBoard() {
           document.getElementById(`r${rowRef}c${colRef}`).className = 'playable';
         }
       }
-      else if (colRef % 1 !== 0) { //Select odd rows
+      else if (colRef % 2 !== 0) { //Select odd rows
         for (let rowRef = 1; rowRef < 9; rowRef += 2) {
           document.getElementById(`r${rowRef}c${colRef}`).className = 'playable';
         }
@@ -36,10 +36,11 @@ function renderBoard() {
       }
     }
   }
-  
+
   //TODO: implement player 1 and 2 chip placement initial board setup
-  calcEmptySpaces();
+
   calcPlayableSpaces();
+  calcEmptySpaces();
 }
 
 renderBoard();
