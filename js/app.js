@@ -28,7 +28,7 @@ function renderBoard() {
     //TODO: render player 1 chips
     let colRef = 1; // <-- reference to column
     let rowRef = 1; // <-- reference to row
-    while (colRef < 9){ //<-- execute all code while column is less than max columns (8)
+    while (colRef < 9) { //<-- execute all code while column is less than max columns (8)
       for (colRef; colRef < 4; colRef++) { //<-- Iterate through col 1-3 for p1 pieces
         if (colRef % 2 === 1) {
           for (rowRef = 1; rowRef < 9; rowRef += 2) {
@@ -63,6 +63,31 @@ function renderBoard() {
   calcPlayableSpaces();
   renderPlayers();
 }
+
+function timer() {
+  let sec = 0;
+  let min = 0;
+  let timer = setInterval(function () {
+    let currentTime = document.getElementById('timer');
+    if (sec < 100000) {
+      sec++;
+    }
+    if (sec < 10) {
+      currentTime.innerHTML = `${min}:0${sec}`;
+    } else {
+      currentTime.innerHTML = `${min}:${sec}`;
+    }
+    console.log(timer);
+
+    if (sec === 59) {
+      min++;
+      sec = 0;
+      currentTime = `${min}:${sec}`;
+      // document.getElementById('timer').innerHTML = `${min}:${sec}`;
+    }
+  }, 1000);
+}
+timer();
 
 renderBoard();
 
