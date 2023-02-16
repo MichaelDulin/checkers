@@ -5,14 +5,23 @@
 <head>
   <link rel="stylesheet" href="css/styles.css">
   <link rel="reset" href="css/reset.css">
-  <title>Document</title>
+  <title>Game</title>
 </head>
-<header>
 <body>
-  <h1>Play</h1>
+  <header>
+    <div class="gameHeader">
+      <div id="home"><a href="./index.html">Home</a></div>
+      <div id="timer"></div>
+      <div id="instructionsTab">?</div>
+    </div>
+  </header>
+  <section class="playerNames">
+    <div id="player1Name"></div>    <!-- Append player input name here -->
+    <div id="player2Name"></div>
+  </section>
   <div class="gameContainer">
     <!--Row 1 - Column 1-8-->
-    <div id="r1c1">l</div>
+    <div id="r1c1"></div>
     <div id="r1c2"></div>
     <div id="r1c3"></div>
     <div id="r1c4"></div>
@@ -85,6 +94,7 @@
     <div id="r8c8"></div>
   </div>
   <script src="../js/app.js"></script>
+  <script src="../js/lp.js"></script>
 </body>
 
 </html>

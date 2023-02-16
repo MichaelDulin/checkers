@@ -97,10 +97,8 @@ p1.getAttribute('content');
 console.log(p1.getAttribute('content'));
 //Moving pieces after click
 function playerMove(event) {
-  let playerclick = event
+  let playerclick = event;
   console.log(playerclick);
-
-  
 }
 playerMove();
 
