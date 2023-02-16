@@ -88,6 +88,7 @@ function renderBoard() {
     let p1DataColor = p1Data.color;
     let p2DataName = p2Data.name;
     let p2DataColor = p2Data.color;
+    console.log(p1DataName, p1DataColor, p2DataName, p2DataColor);
     document.getElementById('player1Name').textContent = p1DataName;
     document.querySelectorAll('p1Chip').style.backgroundcolor = p1DataColor;
     document.getElementById('player2Name').textContent = p2DataName;
