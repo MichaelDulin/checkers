@@ -100,14 +100,17 @@ function renderBoard() {
     //document.querySelectorAll('[content="p2Chip"]').style.backgroundColor = p2DataColor;
   }
 
+
   timer();
   calcPlayableSpaces();
   renderPlayers();
   //assignPlayerValues();
   //runGame();
+
 }
 
 renderBoard();
+
 
 player2turn();
 function player2turn(){ //<------------TEST
@@ -151,9 +154,41 @@ function player2Turn(){
 
 
 
+// let p1 = document.getElementById('board');
 
-//Moving pieces after click
 function playerMove(event) {
+  console.log(event.target.id);
+}
+
+player1turn();
+function player1turn() { //<------------TEST
+  let allP1Chips = document.querySelectorAll('[content="p1Chip"]');
+  for (let i = 0; i < allP1Chips.length; i++) {
+    //console.log(allP1Chips[i]);
+    let curIndex = allP1Chips[i];
+    // console.log(curIndex);
+    curIndex.addEventListener('click', playerMove); //<---- player1click
+  }
+}
+// console.log(event);
+
+player2turn();
+function player2turn() { //<------------TEST
+  let allP2Chips = document.querySelectorAll('[content="p2Chip"]');
+  for (let i = 0; i < allP2Chips.length; i++) {
+    //console.log(allP2Chips[i]);
+    let curIndex = allP2Chips[i];
+    // console.log(curIndex);
+    curIndex.addEventListener('click', playerMove); //<---- player2click
+  }
+}
+// console.log(event);
+
+
+// p1.addEventListener('click', playerMove);
+// TODO: implement move function
+
+// TODO: implement a jump (opponent )
   console.log(event);
 }
 
@@ -198,3 +233,4 @@ While {
 handle game end();
 
   */
+

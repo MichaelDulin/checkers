@@ -81,6 +81,6 @@ function startNewGame() {
 }
 
 
-startNewGame();
+// startNewGame();
 
 
