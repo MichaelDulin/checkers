@@ -93,33 +93,73 @@ function renderBoard() {
     document.getElementById('player2Name').textContent = p2DataName;
     document.querySelectorAll('p2Chip').style.backgroundcolor = p2DataColor;
   }
-  //Done: Calculate empty playable spaces
-  //DONE: implement player 1 and 2 chip placement initial board setup
+  // Done: Calculate empty playable spaces
+  // DONE: implement player 1 and 2 chip placement initial board setup
   timer();
   calcPlayableSpaces();
   renderPlayers();
-  assignPlayerValues();
+  // assignPlayerValues();
 }
 
 renderBoard();
 
-let myContainer = document.querySelector('div');
-let p1 = document.getElementById('r1');
-// p1.getAttribute('content');
+
+
+
+
+
+// let allP1Chips = document.querySelectorAll('[content="p1Chip"]');
+// let allP2Chips = document.querySelectorAll('[content="p2Chip"]');
+// console.log(allP1Chips);
+// let myBoard = document.getElementById('section');
+// let allP2Chips = document.querySelectorAll('[content="p2Chip"]');
+// console.log(allP1Chips);
+// console.log(allP2Chips);
+// let myBoard = document.querySelector('');
+// console.log(myBoard);
+// let playable = myBoard.querySelectorAll('playable');
+// let playerTwoPieces = playable.getAttribute('p2Chip');
+// let playerOnePieces = document.getAttribute('p1Chip');
+// console.log(playerOnePieces);
+// let myContainer = document.getElementsByClassName('gameContainer');
 // console.log(p1);
+// p1.getAttribute('content');
+// console.log(p1.getAttribute('content'));
 //Moving pieces after click
+
+
+// let p1 = document.getElementById('board');
+
 function playerMove(event) {
-  // let playerclick = PointerEvent;
-  // if (playerclick = true) {
-  //   playerclick = playerMove
-  // };
-  console.log(event.srcElement);
-
-
+  console.log(event.target.id);
 }
-playerMove();
 
-myContainer.addEventListener('click', playerMove);
-//TODO: implement move function
+player1turn();
+function player1turn() { //<------------TEST
+  let allP1Chips = document.querySelectorAll('[content="p1Chip"]');
+  for (let i = 0; i < allP1Chips.length; i++) {
+    //console.log(allP1Chips[i]);
+    let curIndex = allP1Chips[i];
+    // console.log(curIndex);
+    curIndex.addEventListener('click', playerMove); //<---- player1click
+  }
+}
+// console.log(event);
 
-//TODO: implement a jump (opponent )
+player2turn();
+function player2turn() { //<------------TEST
+  let allP2Chips = document.querySelectorAll('[content="p2Chip"]');
+  for (let i = 0; i < allP2Chips.length; i++) {
+    //console.log(allP2Chips[i]);
+    let curIndex = allP2Chips[i];
+    // console.log(curIndex);
+    curIndex.addEventListener('click', playerMove); //<---- player2click
+  }
+}
+// console.log(event);
+
+
+// p1.addEventListener('click', playerMove);
+// TODO: implement move function
+
+// TODO: implement a jump (opponent )
