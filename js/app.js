@@ -89,15 +89,15 @@ function renderBoard() {
   function assignPlayerValues() {
     let p1Data = JSON.parse(localStorage.getItem('player1'));
     let p1DataName = p1Data.name;
-    let p1DataColor = p1Data.color;
+    //let p1DataColor = p1Data.color;
     document.getElementById('player1Name').textContent = p1DataName;
-    document.querySelectorAll('[content="p1Chip"]').style.backgroundColor = p1DataColor;
+    //document.querySelectorAll('[content="p1Chip"]').style.backgroundColor = p1DataColor;
 
     let p2Data = JSON.parse(localStorage.getItem('player2'));
     let p2DataName = p2Data.name;
-    let p2DataColor = p2Data.color;
+    //let p2DataColor = p2Data.color;
     document.getElementById('player2Name').textContent = p2DataName;
-    document.querySelectorAll('[content="p2Chip"]').style.backgroundColor = p2DataColor;
+    //document.querySelectorAll('[content="p2Chip"]').style.backgroundColor = p2DataColor;
   }
 
   timer();
@@ -115,21 +115,23 @@ function player2turn(){ //<------------TEST
   for (let i = 0; i < allP2Chips.length; i++) {
     //console.log(allP2Chips[i]);
     let curIndex = allP2Chips[i];
-    curIndex.addEventListener('click', playerMove);
+    console.log(curIndex);
+    curIndex.addEventListener('click', playerMove); //<---- player2Move
   }
 }
 
 //TODO: implement move function
-/*
 function runGame(){
   let turnCounter = 1;
-  while (p1Chips !== 0 && p2Chips !== 0){// <----while both players have at least 1 chip left (break out on end of game)
+  while (p1Chips !== 0 && p2Chips !== 0){// <-while both players have at least 1 chip left (break out on end of game)
     if (turnCounter % 2 === 1){//         <-- is odd (player 1 turn)
+      player1Turn();
       // add indicator for player 1 turn (name highlight or banner)
       // enable p1Chip click event
 
 
     } else{//                             <-- is even (player 2 turn)
+      player2turn();
       // add indicator for player 2 turn (name highlight or banner)
       // enable p2Chip click event
     }
@@ -137,6 +139,7 @@ function runGame(){
   }
   // handle end of game
 }
+/*
 
 //TODO: implement a jump (opponent kill)
 

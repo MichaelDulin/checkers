@@ -98,6 +98,22 @@ a {
   border: 3px solid black;
   background-color: rgb(85, 85, 82);
 }
+/*For index.html*/
+.homeinfo {
+  display:flex;
+  justify-content: space-around;
+  flex-direction: column;
+  margin-left:24%;
+  margin-right: 32%;
+  width:800px;
+  font-size: 60px;
+  align-items: center;
+}
+
+.homeinfo #checkersHome {
+  font-size: 80px;
+  font-weight: 600;
+}
 
 /*For game.html*/
 .gameContainer {
