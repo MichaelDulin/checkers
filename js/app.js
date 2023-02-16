@@ -28,7 +28,7 @@ function renderBoard() {
     //TODO: render player 1 chips
     let colRef = 1; // <-- reference to column
     let rowRef = 1; // <-- reference to row
-    while (colRef < 9){ //<-- execute all code while column is less than max columns (8)
+    while (colRef < 9) { //<-- execute all code while column is less than max columns (8)
       for (colRef; colRef < 4; colRef++) { //<-- Iterate through col 1-3 for p1 pieces
         if (colRef % 2 === 1) {
           for (rowRef = 1; rowRef < 9; rowRef += 2) {
@@ -63,12 +63,22 @@ function renderBoard() {
   calcPlayableSpaces();
   renderPlayers();
 }
-
 renderBoard();
 
+let myContainer = document.querySelector('div');
+let p1 = document.getElementById('r1c1');
+p1.getAttribute('content');
+console.log(p1.getAttribute('content'));
+//Moving pieces after click
+function playerMove(event) {
+  let playerclick = event
+  console.log(playerclick);
+
+  
+}
+playerMove();
+
+myContainer.addEventListener('click', playerMove);
 //TODO: implement move function
 
 //TODO: implement a jump (opponent )
-
-
-
