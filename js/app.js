@@ -34,11 +34,13 @@ function renderBoard() {
           for (rowRef = 1; rowRef < 9; rowRef += 2) {
             let cur = document.getElementById(`r${rowRef}c${colRef}`);
             cur.setAttribute('content', 'p1Chip');
+            // event listener for p1Chip
           }
         } else {
           for (rowRef = 2; rowRef < 9; rowRef += 2) {
             let cur = document.getElementById(`r${rowRef}c${colRef}`);
             cur.setAttribute('content', 'p1Chip');
+            // event listener for p1Chip
           }
         }
       }
@@ -48,11 +50,13 @@ function renderBoard() {
           for (rowRef = 1; rowRef < 9; rowRef += 2) {
             let cur = document.getElementById(`r${rowRef}c${colRef}`);
             cur.setAttribute('content', 'p2Chip');
+            // event listener for p2Chip
           }
         } else {
           for (rowRef = 2; rowRef < 9; rowRef += 2) {
             let cur = document.getElementById(`r${rowRef}c${colRef}`);
             cur.setAttribute('content', 'p2Chip');
+            // event listener for p2Chip
           }
         }
       }
@@ -81,40 +85,115 @@ function renderBoard() {
       }
     }, 1000);
   }
+  //TODO: fix assignment of values to players
   function assignPlayerValues() {
     let p1Data = JSON.parse(localStorage.getItem('player1'));
-    let p2Data = JSON.parse(localStorage.getItem('player2'));
     let p1DataName = p1Data.name;
     let p1DataColor = p1Data.color;
+    document.getElementById('player1Name').textContent = p1DataName;
+    document.querySelectorAll('[content="p1Chip"]').style.backgroundColor = p1DataColor;
+
+    let p2Data = JSON.parse(localStorage.getItem('player2'));
     let p2DataName = p2Data.name;
     let p2DataColor = p2Data.color;
-    document.getElementById('player1Name').textContent = p1DataName;
-    document.querySelectorAll('p1Chip').style.backgroundcolor = p1DataColor;
     document.getElementById('player2Name').textContent = p2DataName;
-    document.querySelectorAll('p2Chip').style.backgroundcolor = p2DataColor;
+    document.querySelectorAll('[content="p2Chip"]').style.backgroundColor = p2DataColor;
   }
-  //Done: Calculate empty playable spaces
-  //DONE: implement player 1 and 2 chip placement initial board setup
+
   timer();
   calcPlayableSpaces();
   renderPlayers();
-  assignPlayerValues();
+  //assignPlayerValues();
+  //runGame();
 }
 
 renderBoard();
 
-let myContainer = document.querySelector('div');
-let p1 = document.getElementById('r1c1');
-p1.getAttribute('content');
-console.log(p1.getAttribute('content'));
+player2turn();
+function player2turn(){ //<------------TEST
+  let allP2Chips = document.querySelectorAll('[content="p2Chip"]');
+  for (let i = 0; i < allP2Chips.length; i++) {
+    //console.log(allP2Chips[i]);
+    let curIndex = allP2Chips[i];
+    curIndex.addEventListener('click', playerMove);
+  }
+}
+
+//TODO: implement move function
+/*
+function runGame(){
+  let turnCounter = 1;
+  while (p1Chips !== 0 && p2Chips !== 0){// <----while both players have at least 1 chip left (break out on end of game)
+    if (turnCounter % 2 === 1){//         <-- is odd (player 1 turn)
+      // add indicator for player 1 turn (name highlight or banner)
+      // enable p1Chip click event
+
+
+    } else{//                             <-- is even (player 2 turn)
+      // add indicator for player 2 turn (name highlight or banner)
+      // enable p2Chip click event
+    }
+    turnCounter++;
+  }
+  // handle end of game
+}
+
+//TODO: implement a jump (opponent kill)
+
+//TODO: handle king event
+function player2Turn(){
+  let allP1Chips = document.querySelectorAll('[content="p1Chip"]');
+}
+*/
+
+
+
+
+
+
 //Moving pieces after click
 function playerMove(event) {
-  let playerclick = event;
-  console.log(playerclick);
+  console.log(event);
 }
-playerMove();
 
-myContainer.addEventListener('click', playerMove);
-//TODO: implement move function
+//allP1Chips.addEventListener('click', playerMove);
 
-//TODO: implement a jump (opponent )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+EVENT LISTENER:
+While {
+1. eventlistener1 = first click of chip (pick up chip -> check for availablity (highlight avialability))
+2. eventlistenr2 = second click of chip (place chip IF space available)
+
+3. Enable eventListener1 for p1Chips
+  - enable clickablity of p1Chips
+  - check for availabilty and highlight
+4. disable eventlistener 1 -> enable eventlistener2
+  - disable p1Chips -> enable 'avaiable space'                    <----- standard content=empty is playable space without chip -> need to change to content=canMove
+  - click event listener for content = available
+  -disable eventlistener2
+5. repeat step 3 -> enable p2Chip (instead of p1Chips)
+6. continue until no chips left
+}
+handle game end();
+
+  */
