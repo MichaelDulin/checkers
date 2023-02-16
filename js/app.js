@@ -58,37 +58,49 @@ function renderBoard() {
       }
     }
   }
+  function timer() {
+    let sec = 0;
+    let min = 0;
+    let timer = setInterval(function () {
+      let currentTime = document.getElementById('timer');
+      if (sec < 100000) {
+        sec++;
+      }
+      if (sec < 10) {
+        currentTime.innerHTML = `${min}:0${sec}`;
+      } else {
+        currentTime.innerHTML = `${min}:${sec}`;
+      }
+      console.log(timer);
+
+      if (sec === 59) {
+        min++;
+        sec = 0;
+        currentTime = `${min}:${sec}`;
+        // document.getElementById('timer').innerHTML = `${min}:${sec}`;
+      }
+    }, 1000);
+  }
+  function assignPlayerValues() {
+    let p1Data = JSON.parse(localStorage.getItem('player1'));
+    let p2Data = JSON.parse(localStorage.getItem('player2'));
+    let p1DataName = p1Data.name;
+    let p1DataColor = p1Data.color;
+    let p2DataName = p2Data.name;
+    let p2DataColor = p2Data.color;
+    document.getElementById('player1Name').textContent = p1DataName;
+    document.querySelectorAll('p1Chip').style.backgroundcolor = p1DataColor;
+    document.getElementById('player2Name').textContent = p2DataName;
+    document.querySelectorAll('p2Chip').style.backgroundcolor = p2DataColor;
+  }
   //Done: Calculate empty playable spaces
   //DONE: implement player 1 and 2 chip placement initial board setup
+  timer();
   calcPlayableSpaces();
   renderPlayers();
+  assignPlayerValues();
 }
 
-
-function timer() {
-  let sec = 0;
-  let min = 0;
-  let timer = setInterval(function () {
-    let currentTime = document.getElementById('timer');
-    if (sec < 100000) {
-      sec++;
-    }
-    if (sec < 10) {
-      currentTime.innerHTML = `${min}:0${sec}`;
-    } else {
-      currentTime.innerHTML = `${min}:${sec}`;
-    }
-    console.log(timer);
-
-    if (sec === 59) {
-      min++;
-      sec = 0;
-      currentTime = `${min}:${sec}`;
-      // document.getElementById('timer').innerHTML = `${min}:${sec}`;
-    }
-  }, 1000);
-}
-timer();
 renderBoard();
 
 let myContainer = document.querySelector('div');
