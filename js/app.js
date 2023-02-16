@@ -104,13 +104,18 @@ function renderBoard() {
 renderBoard();
 
 let myContainer = document.querySelector('div');
-let p1 = document.getElementById('r1c1');
-p1.getAttribute('content');
-console.log(p1.getAttribute('content'));
+let p1 = document.getElementById('r1');
+// p1.getAttribute('content');
+// console.log(p1);
 //Moving pieces after click
 function playerMove(event) {
-  let playerclick = event;
-  console.log(playerclick);
+  // let playerclick = PointerEvent;
+  // if (playerclick = true) {
+  //   playerclick = playerMove
+  // };
+  console.log(event.srcElement);
+
+
 }
 playerMove();
 
