@@ -2,25 +2,29 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Main Menu</title>
   <link rel="stylesheet" href="../css/styles.css">
+  <link rel="reset" href="css/reset.css">
 </head>
 
 <body>
-  <h1>Welcome to Checkers</h1>
-  <h2 class="tutorial-align"> <!--TODO: css style for tutuorial to transistion down (base state = hidden)-->
-    Tutorial
-  </h2>
-  <h2>
-    <a href="./load.html">Play</a>
-  </h2>
-  <div class="container"> <!--TODO: create uniformity between all pages -->
-    <div class="high-score"><a href="./scores.html">High Score</a></div>
-    <div class="about-us"><a href="./aboutUs.html">About Us</a></div>
-    <div class="TEST_GAME"><a href="./game.html">TEST_GAME/<a></div>
+  <header>
+    <div class="gameHeader">
+      <div id="home"><a href="../scores.html">Scores</a></div>
+      <div id="timer"><a href="./load.html">Play</a></div>
+      <div id="instructionsTab"><a href="./aboutUs.html">About Us</a></div>
+    </div>
+  </header>
+  <div class="homeinfo">
+      <div id="checkersHome">Welcome to Checkers!</div>
+      <ul id="gameInfo"> Rules
+        <li>intruction 1</li>
+        <li>intruction 2</li>
+        <li>intruction 3</li>
+        <li>intruction 4</li>
+        <li>intruction 5</li>
+        <li>intruction 6</li>
+      </ul>
   </div>
 </body>
 

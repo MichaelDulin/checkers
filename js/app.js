@@ -34,11 +34,13 @@ function renderBoard() {
           for (rowRef = 1; rowRef < 9; rowRef += 2) {
             let cur = document.getElementById(`r${rowRef}c${colRef}`);
             cur.setAttribute('content', 'p1Chip');
+            // event listener for p1Chip
           }
         } else {
           for (rowRef = 2; rowRef < 9; rowRef += 2) {
             let cur = document.getElementById(`r${rowRef}c${colRef}`);
             cur.setAttribute('content', 'p1Chip');
+            // event listener for p1Chip
           }
         }
       }
@@ -48,11 +50,13 @@ function renderBoard() {
           for (rowRef = 1; rowRef < 9; rowRef += 2) {
             let cur = document.getElementById(`r${rowRef}c${colRef}`);
             cur.setAttribute('content', 'p2Chip');
+            // event listener for p2Chip
           }
         } else {
           for (rowRef = 2; rowRef < 9; rowRef += 2) {
             let cur = document.getElementById(`r${rowRef}c${colRef}`);
             cur.setAttribute('content', 'p2Chip');
+            // event listener for p2Chip
           }
         }
       }
@@ -81,51 +85,75 @@ function renderBoard() {
       }
     }, 1000);
   }
+  //TODO: fix assignment of values to players
   function assignPlayerValues() {
     let p1Data = JSON.parse(localStorage.getItem('player1'));
-    let p2Data = JSON.parse(localStorage.getItem('player2'));
     let p1DataName = p1Data.name;
-    let p1DataColor = p1Data.color;
-    let p2DataName = p2Data.name;
-    let p2DataColor = p2Data.color;
+    //let p1DataColor = p1Data.color;
     document.getElementById('player1Name').textContent = p1DataName;
-    document.querySelectorAll('p1Chip').style.backgroundcolor = p1DataColor;
+    //document.querySelectorAll('[content="p1Chip"]').style.backgroundColor = p1DataColor;
+
+    let p2Data = JSON.parse(localStorage.getItem('player2'));
+    let p2DataName = p2Data.name;
+    //let p2DataColor = p2Data.color;
     document.getElementById('player2Name').textContent = p2DataName;
-    document.querySelectorAll('p2Chip').style.backgroundcolor = p2DataColor;
+    //document.querySelectorAll('[content="p2Chip"]').style.backgroundColor = p2DataColor;
   }
-  // Done: Calculate empty playable spaces
-  // DONE: implement player 1 and 2 chip placement initial board setup
+
+
   timer();
   calcPlayableSpaces();
   renderPlayers();
-  // assignPlayerValues();
+  //assignPlayerValues();
+  //runGame();
+
 }
 
 renderBoard();
 
 
+player2turn();
+function player2turn(){ //<------------TEST
+  let allP2Chips = document.querySelectorAll('[content="p2Chip"]');
+  for (let i = 0; i < allP2Chips.length; i++) {
+    //console.log(allP2Chips[i]);
+    let curIndex = allP2Chips[i];
+    console.log(curIndex);
+    curIndex.addEventListener('click', playerMove); //<---- player2Move
+  }
+}
+
+//TODO: implement move function
+function runGame(){
+  let turnCounter = 1;
+  while (p1Chips !== 0 && p2Chips !== 0){// <-while both players have at least 1 chip left (break out on end of game)
+    if (turnCounter % 2 === 1){//         <-- is odd (player 1 turn)
+      player1Turn();
+      // add indicator for player 1 turn (name highlight or banner)
+      // enable p1Chip click event
+
+
+    } else{//                             <-- is even (player 2 turn)
+      player2turn();
+      // add indicator for player 2 turn (name highlight or banner)
+      // enable p2Chip click event
+    }
+    turnCounter++;
+  }
+  // handle end of game
+}
+/*
+
+//TODO: implement a jump (opponent kill)
+
+//TODO: handle king event
+function player2Turn(){
+  let allP1Chips = document.querySelectorAll('[content="p1Chip"]');
+}
+*/
 
 
 
-
-// let allP1Chips = document.querySelectorAll('[content="p1Chip"]');
-// let allP2Chips = document.querySelectorAll('[content="p2Chip"]');
-// console.log(allP1Chips);
-// let myBoard = document.getElementById('section');
-// let allP2Chips = document.querySelectorAll('[content="p2Chip"]');
-// console.log(allP1Chips);
-// console.log(allP2Chips);
-// let myBoard = document.querySelector('');
-// console.log(myBoard);
-// let playable = myBoard.querySelectorAll('playable');
-// let playerTwoPieces = playable.getAttribute('p2Chip');
-// let playerOnePieces = document.getAttribute('p1Chip');
-// console.log(playerOnePieces);
-// let myContainer = document.getElementsByClassName('gameContainer');
-// console.log(p1);
-// p1.getAttribute('content');
-// console.log(p1.getAttribute('content'));
-//Moving pieces after click
 
 
 // let p1 = document.getElementById('board');
@@ -163,3 +191,48 @@ function player2turn() { //<------------TEST
 // TODO: implement move function
 
 // TODO: implement a jump (opponent )
+  console.log(event);
+}
+
+//allP1Chips.addEventListener('click', playerMove);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+EVENT LISTENER:
+While {
+1. eventlistener1 = first click of chip (pick up chip -> check for availablity (highlight avialability))
+2. eventlistenr2 = second click of chip (place chip IF space available)
+
+3. Enable eventListener1 for p1Chips
+  - enable clickablity of p1Chips
+  - check for availabilty and highlight
+4. disable eventlistener 1 -> enable eventlistener2
+  - disable p1Chips -> enable 'avaiable space'                    <----- standard content=empty is playable space without chip -> need to change to content=canMove
+  - click event listener for content = available
+  -disable eventlistener2
+5. repeat step 3 -> enable p2Chip (instead of p1Chips)
+6. continue until no chips left
+}
+handle game end();
+
+  */
+
