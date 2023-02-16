@@ -127,13 +127,11 @@ function runGame(){
     if (turnCounter % 2 === 1){//         <-- is odd (player 1 turn)
       player1Turn();
       // add indicator for player 1 turn (name highlight or banner)
-      // enable p1Chip click event
 
 
     } else{//                             <-- is even (player 2 turn)
       player2turn();
       // add indicator for player 2 turn (name highlight or banner)
-      // enable p2Chip click event
     }
     turnCounter++;
   }
