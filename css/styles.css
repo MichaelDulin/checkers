@@ -145,7 +145,7 @@ a {
 }
 
 .playable[content="p1Chip"] {
-  /*background-color: gray;  <--- need to pass this color in JS*/
+  background-color: gray; /* <--- need to pass this color in JS*/
   height: 50px;
   width: 50px;
   margin:auto;
@@ -154,7 +154,7 @@ a {
 }
 
 .playable[content="p2Chip"] {
-  /*background-color: rgb(154, 81, 81);  <--- need to pass this color in JS*/
+  background-color: rgb(154, 81, 81); /* <--- need to pass this color in JS*/
   height: 50px;
   width: 50px;
   margin:auto;
