@@ -1,5 +1,6 @@
 'use strict';
 console.log('hello world');
+let playerCount = 0;
 // const CONTINUE_BUTTON_ID = 'continue-button';
 
 // function init() {
@@ -44,6 +45,7 @@ function startNewGame() {
     const playerName1 = document.getElementById('player1-name').value;
     const playerColor1 = document.getElementById('player1-color').value;
     console.log(`Player 1 Name: ${playerName1}, Checker Color: ${playerColor1}`);
+    assignPlayerValues(playerName1, playerColor1);
     player1Data = {name: playerName1, color: playerColor1};
     savePlayerDataToLocalStorage('player1', playerName1, playerColor1);
 
@@ -51,6 +53,7 @@ function startNewGame() {
     const playerName2 = document.getElementById('player2-name').value;
     const playerColor2 = document.getElementById('player2-color').value;
     console.log(`Player 2 Name: ${playerName2}, Checker Color: ${playerColor2}`);
+    assignPlayerValues(playerName2, playerColor2);
     player2Data = {name: playerName2, color: playerColor2};
     savePlayerDataToLocalStorage('player2', playerName2, playerColor2);
     if (playerColor1 === playerColor2) {
@@ -80,3 +83,15 @@ function startNewGame() {
 
 
 startNewGame();
+
+function assignPlayerValues(playerName, playerColor){
+  if (playerCount < 1) {
+    document.getElementById('player1Name').textContent = playerName;
+    document.querySelectorAll('p1Chip').style.backgroundcolor = playerColor;
+    return;
+  } else {
+    document.getElementById('player2Name').textContent = playerName;
+    document.querySelectorAll('p2Chip').style.backgroundcolor = playerColor;
+    return;
+  }
+}
