@@ -111,88 +111,140 @@ function renderBoard() {
 
 renderBoard();
 
-
-player2turn();
-function player2turn(){ //<------------TEST
-  let allP2Chips = document.querySelectorAll('[content="p2Chip"]');
-  for (let i = 0; i < allP2Chips.length; i++) {
-    //console.log(allP2Chips[i]);
-    let curIndex = allP2Chips[i];
-    console.log(curIndex);
-    curIndex.addEventListener('click', playerMove); //<---- player2Move
-  }
-}
-
-//TODO: implement move function
 function runGame(){
   let turnCounter = 1;
   while (p1Chips !== 0 && p2Chips !== 0){// <-while both players have at least 1 chip left (break out on end of game)
     if (turnCounter % 2 === 1){//         <-- is odd (player 1 turn)
-      player1Turn();
-      // add indicator for player 1 turn (name highlight or banner)
-
-
-    } else{//                             <-- is even (player 2 turn)
+      player1turn();
+    } else{
       player2turn();
-      // add indicator for player 2 turn (name highlight or banner)
     }
     turnCounter++;
   }
   // handle end of game
 }
-/*
+
 
 //TODO: implement a jump (opponent kill)
 
 //TODO: handle king event
-function player2Turn(){
-  let allP1Chips = document.querySelectorAll('[content="p1Chip"]');
+function calcNonKingP1Spaces(rowRef, colRef) {
+  let possMove1 = document.getElementById(`r${rowRef + 1}c${colRef + 1}`);
+  let possMove2 = document.getElementById(`r${rowRef - 1}c${colRef + 1}`);
+  // check if next move is furthest col (p1 = col 8) (p2 = col 1)
+  //    --> then handle king making function
+  let emptySpace1 = possMove1.getAttribute('content');
+  let emptySpace2 = possMove2.getAttribute('content');
+  if (emptySpace1 === 'empty') {
+    // can move here - non kill move
+    // swap conent values
+  } else if (emptySpace2 === 'p2Chip') {
+    //can jump (kill) --> must check empty space behind opponent to move
+    // else -> cannot move
+  } else {
+    // cannot move to that space
+  }
+  if (emptySpace2 === 'empty') {
+    // can move here - non kill move
+    // swap conent values
+  } else if (emptySpace2 === 'p2Chip') {
+    //can jump (kill) --> must check empty space behind opponent to move
+    // else -> cannot move
+  } else {
+    // cannot move to that space
+  }
 }
-*/
+function calcNonKingP2Spaces() {
+  let possMove1 = document.getElementById(`r${rowRef + 1}c${colRef - 1}`);
+  let possMove2 = document.getElementById(`r${rowRef - 1}c${colRef - 1}`);
+  // check if next move is furthest col (p1 = col 8) (p2 = col 1)
+  //    --> then handle king making function
+  let emptySpace1 = possMove1.getAttribute('content');
+  let emptySpace2 = possMove2.getAttribute('content');
+  if (emptySpace1 === 'empty') {
+    // can move here - non kill move
+    // swap conent values
+  } else if (emptySpace2 === 'p2Chip') {
+    //can jump (kill) --> must check empty space behind opponent to move
+    // else -> cannot move
+  } else {
+    // cannot move to that space
+  }
+  if (emptySpace2 === 'empty') {
+    // can move here - non kill move
+    // swap conent values
+  } else if (emptySpace2 === 'p2Chip') {
+    //can jump (kill) --> must check empty space behind opponent to move
+    // else -> cannot move
+  } else {
+    // cannot move to that space
+  }
+}
 
 
-
-
-
-// let p1 = document.getElementById('board');
 
 function playerMove(event) {
-  console.log(event.target.id);
+  let curId = event.target.id;
+  let contentValue = curId.getAttribute('content');
+  if (contentValue === 'p1Chip'){
+    let text = event.target.id;
+    let list = text.match(/\d+/g);
+    let rowRef = list[0];
+    let colRef = list[1];
+    calcNonKingP1Spaces(rowRef, colRef);
+    // check avaiable spaces to the right of chip (if not king)
+    // <------- check for enemy piece  (possible kill)
+    //add eventListener to handle available spaces to move (no more than 2 unless king)
+    // event handler: for onclick of piece placement (if availalbe = not clicked then prompt to click correct space)
+    // remove eventHandler()
+
+    player1end();
+  } else {
+    // check avaiable spaces to the left of chip (if not king)
+    // <------- check for enemy piece  (possible kill)
+    //add eventListener to handle available spaces to move (no more than 2 unless king)
+    // event handler: for onclick of piece placement (if availalbe = not clicked then prompt to click correct space)
+    // remove eventHandler()
+    player2end();
+  }
 }
 
-player1turn();
-function player1turn() { //<------------TEST
+function player1turn() {
   let allP1Chips = document.querySelectorAll('[content="p1Chip"]');
   for (let i = 0; i < allP1Chips.length; i++) {
-    //console.log(allP1Chips[i]);
     let curIndex = allP1Chips[i];
-    // console.log(curIndex);
-    curIndex.addEventListener('click', playerMove); //<---- player1click
+    curIndex.addEventListener('click', playerMove);
   }
 }
-// console.log(event);
 
-player2turn();
-function player2turn() { //<------------TEST
+function player1end() {
+  let allP1Chips = document.querySelectorAll('[content="p1Chip"]');
+  for (let i = 0; i < allP1Chips.length; i++) {
+    let curIndex = allP1Chips[i];
+    curIndex.removeEventListener('click', playerMove); //remove event listener
+  }
+}
+
+function player2turn() {
   let allP2Chips = document.querySelectorAll('[content="p2Chip"]');
   for (let i = 0; i < allP2Chips.length; i++) {
-    //console.log(allP2Chips[i]);
     let curIndex = allP2Chips[i];
-    // console.log(curIndex);
-    curIndex.addEventListener('click', playerMove); //<---- player2click
+    curIndex.addEventListener('click', playerMove);
   }
 }
-// console.log(event);
 
-
-// p1.addEventListener('click', playerMove);
-// TODO: implement move function
-
-// TODO: implement a jump (opponent )
-  console.log(event);
+function player2end() {
+  let allP2Chips = document.querySelectorAll('[content="p2Chip"]');
+  for (let i = 0; i < allP2Chips.length; i++) {
+    let curIndex = allP2Chips[i];
+    curIndex.removeEventListener('click', playerMove); //remove event listener
+  }
 }
 
-//allP1Chips.addEventListener('click', playerMove);
+
+
+// console.log(event);
+
 
 
 
