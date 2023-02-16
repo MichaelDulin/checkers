@@ -64,6 +64,7 @@ function renderBoard() {
   renderPlayers();
 }
 
+
 function timer() {
   let sec = 0;
   let min = 0;
@@ -88,12 +89,22 @@ function timer() {
   }, 1000);
 }
 timer();
-
 renderBoard();
 
+let myContainer = document.querySelector('div');
+let p1 = document.getElementById('r1c1');
+p1.getAttribute('content');
+console.log(p1.getAttribute('content'));
+//Moving pieces after click
+function playerMove(event) {
+  let playerclick = event
+  console.log(playerclick);
+
+  
+}
+playerMove();
+
+myContainer.addEventListener('click', playerMove);
 //TODO: implement move function
 
 //TODO: implement a jump (opponent )
-
-
-
