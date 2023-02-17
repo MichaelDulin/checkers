@@ -311,6 +311,7 @@ player1turn();
 // }
 
 
+
 function playerMove(event) {
   let text = event.target.id;
   console.log(event.target);
@@ -418,9 +419,6 @@ function player2end() {
     curIndex.removeEventListener('click', playerMove); //remove event listener
   }
 }
-
-
-
 
 
 
