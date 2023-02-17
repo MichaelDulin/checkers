@@ -370,8 +370,6 @@ function player2end() {
 
 
 
-
-
 /*
 EVENT LISTENER:
 While {
