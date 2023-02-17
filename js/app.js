@@ -2,6 +2,8 @@
 
 let p1Chips = 12;
 let p2Chips = 12;
+let playerTurn = 1;
+
 
 //Done: Create virtual layout of board (playable vs unplayble spaces
 function renderBoard() {
@@ -92,7 +94,6 @@ function renderBoard() {
     //let p1DataColor = p1Data.color;
     document.getElementById('player1Name').textContent = p1DataName;
     //document.querySelectorAll('[content="p1Chip"]').style.backgroundColor = p1DataColor;
-
     let p2Data = JSON.parse(localStorage.getItem('player2'));
     let p2DataName = p2Data.name;
     //let p2DataColor = p2Data.color;
@@ -111,6 +112,7 @@ function renderBoard() {
 
 renderBoard();
 
+// FIX THIS
 function runGame() {
   let turnCounter = 1;
   while (p1Chips !== 0 && p2Chips !== 0) {// <-while both players have at least 1 chip left (break out on end of game)
@@ -132,113 +134,87 @@ function playerMove(event) {
   let rowRef = list[0];
   let colRef = list[1];
   if (contentValue === 'p1Chip') {
-    let playerTurn = 1;
+    playerTurn = 1;
     calcNonKingP1Spaces(playerTurn, rowRef, colRef);
-    // event handler: for onclick of piece placement (if availalbe = not clicked then prompt to click correct space)
-    // remove eventHandler()
-    player1end();
   } else if (contentValue === 'p2Chip') {
-    let playerTurn = 2;
+    playerTurn = 2;
     calcNonKingP2Spaces(playerTurn, rowRef, colRef);
-    //add eventListener to handle clicked available spaces
-    // event handler: for onclick of piece placement (if availalbe = not clicked then prompt to click correct space)
-    // remove eventHandler()
-    player2end();
   }
 }
 //TODO: implement a jump (opponent kill)
-function secondELNonKing(curPiece, rowRef, colRef, move1, move2) {
+// function secondELNonKing(curPiece, playerTurn, rowRef, colRef, move1, move2) {
+//   let possMove1 = move1.getAttribute('content');
+//   let possMove2 = move2.getAttribute('content');
+
+// }
+
+// function secondELKing(curPiece, playerTurn, rowRef, colRef, move1R, move2R, move1L, move2L) {
+
+// }
+
+//TODO: handle king event
+// function calcNonKingP1Spaces(playerTurn, rowRef, colRef) {
+//   let curClickedPiece = document.getElementById(`r${rowRef}c${colRef}`);
+//   let p1PossMove1 = document.getElementById(`r${rowRef + 1}c${colRef + 1}`); // goes up and over (move1R)
+//   let p1PossMove2 = document.getElementById(`r${rowRef - 1}c${colRef + 1}`); // goes down and over(move2R)
+//   let p2PossMove1 = document.getElementById(`r${rowRef + 1}c${colRef - 1}`); // goes up and over (move1L)
+//   let p2PossMove2 = document.getElementById(`r${rowRef - 1}c${colRef - 1}`); // goes down and over (move2L)
+//   let checkCurValue = curClickedPiece.getAttribute('king');
+//   if (checkCurValue === 'true') {
+//     secondELKing(curClickedPiece, playerTurn, rowRef, colRef, p1PossMove1, p1PossMove2, p2PossMove1, p2PossMove2);
+//   } else {
+//     if (playerTurn === 1) {
+//       secondELNonKing(curClickedPiece, playerTurn, rowRef, colRef, p1PossMove1, p1PossMove2);
+//     } else if (playerTurn === 2) {
+//       secondELNonKing(curClickedPiece, playerTurn, rowRef, colRef, p2PossMove1, p2PossMove2);
+//     }
+//   }
+// }
+//    --> then handle king making function
+
+function setSecondEventListener(move1, move2) {
+  // decide who is p1 or p2
+  if (playerTurn === 1) {
+    player1end();
+  }else{
+    player2end();
+  }
+  move1.addEventListener('click', secondEventClick);
+  move2.addEventListener('click', secondEventClick);
+}
+
+function secondEventClick(event) {
   
 }
 
-function secondELKing(curPiece, playerTurn, rowRef, colRef, move1R, move2R, move1L, move2L) {
-
-}
-
-//TODO: handle king event
-function calcNonKingP1Spaces(playerTurn, rowRef, colRef) {
+//-------------------------PLAYER 1-----------------------------
+function calcNonKingP1Spaces(rowRef, colRef) {
   let curClickedPiece = document.getElementById(`r${rowRef}c${colRef}`);
-  let p1PossMove1 = document.getElementById(`r${rowRef + 1}c${colRef + 1}`); // goes up and over
-  let p1PossMove2 = document.getElementById(`r${rowRef - 1}c${colRef + 1}`); // goes down and over
-  let p2PossMove1 = document.getElementById(`r${rowRef + 1}c${colRef - 1}`); // goes up and over
-  let p2PossMove2 = document.getElementById(`r${rowRef - 1}c${colRef - 1}`); // goes down and over
-  let checkCurValue = curClickedPiece.getAttribute('king');
-  if (checkCurValue === 'true') {
-    secondELKing(curClickedPiece, playerTurn, rowRef, colRef, p1PossMove1, p1PossMove2, p2PossMove1, p2PossMove2);
-  } else {
-    if (playerTurn === 1) {
-      secondELNonKing(curClickedPiece, rowRef, colRef, p1PossMove1, p1PossMove2);
-    } else if (playerTurn === 2) {
-      secondELNonKing(curClickedPiece, rowRef, colRef, p2PossMove1, p2PossMove2);
-    }
-  }
-}
-//    --> then handle king making function
-/*let emptySpace1 = possMove1.getAttribute('content');
-let emptySpace2 = possMove2.getAttribute('content');
-if (emptySpace1 === 'empty') {
-  curClickedPiece.setAttribute('content', 'empty');
-  possMove1.setAttribute('content', 'p1Chip');
-  // end p1 turn
-} else if (emptySpace2 === 'p2Chip') {
-  let spaceAfterEnemyChip = document.getElementById(`r${rowRef + 2}c${colRef + 2}`);
-  let checkEmptySpaceAfterEnemeyJump = spaceAfterEnemyChip.getAttribute('content');
-  if (checkEmptySpaceAfterEnemeyJump === 'empty') {
-    spaceAfterEnemyChip.setAttribute('content', 'p1Chip');
-    curClickedPiece.setAttribute('content', 'empty');
-    possMove1.setAttribute('content', 'empty');
-    p2Chips--;
-    // check if king -> make king event
-    // end p1 turn
-  } else {
-    alert('Invalid Move: must have empty space after enemy piece');
-  }
-} else {
-  alert('Invalid Move: space is occupied');
-}
-if (emptySpace2 === 'empty') {
-  curClickedPiece.setAttribute('content', 'empty');
-  emptySpace2.setAttribute('content', 'p1Chip');
-  // end p1 turn
-} else if (emptySpace2 === 'p2Chip') {
-  let spaceAfterEnemyChip = document.getElementById(`r${rowRef - 2}c${colRef + 2}`);
-  let checkEmptySpaceAfterEnemeyJump = spaceAfterEnemyChip.getAttribute('content');
-  if (checkEmptySpaceAfterEnemeyJump === 'empty') {
-    spaceAfterEnemyChip.setAttribute('content', 'p1Chip');
-    curClickedPiece.setAttribute('content', 'empty');
-    possMove1.setAttribute('content', 'empty');
-    p2Chips--;
-    // check if king -> make king event
-    // end p1 turn
-  } else {
-    alert('Invalid Move: space is occupied');
-  }
-} else {
-  alert('Invalid Move: space is occupied');
-}
-*/
-function calcNonKingP2Spaces(rowRef, colRef) {
-  let curClickedPiece = document.getElementById(`r${rowRef}c${colRef}`);
-  let possMove1 = document.getElementById(`r${rowRef + 1}c${colRef - 1}`); // goes up and over
-  let possMove2 = document.getElementById(`r${rowRef - 1}c${colRef - 1}`); // goes down and over
-  // check if next move is furthest col (p1 = col 8) (p2 = col 1)
-  //    --> then handle king making function
+  let possMove1 = document.getElementById(`r${rowRef + 1}c${colRef + 1}`); // goes up and over
+  let possMove2 = document.getElementById(`r${rowRef - 1}c${colRef + 1}`); // goes down and over
+  let moveChoice1;
+  let moveChoice2;
+
   let emptySpace1 = possMove1.getAttribute('content');
   let emptySpace2 = possMove2.getAttribute('content');
   if (emptySpace1 === 'empty') {
+    moveChoice1 = possMove1;
+
     curClickedPiece.setAttribute('content', 'empty');
-    emptySpace1.setAttribute('content', 'p2Chip');
-    // end p2 turn
-  } else if (emptySpace2 === 'p1Chip') {
-    let spaceAfterEnemyChip = document.getElementById(`r${rowRef + 2}c${colRef - 2}`);
-    let checkEmptySpaceAfterEnemeyJump = spaceAfterEnemyChip.getAttribute('content');
+    possMove1.setAttribute('content', 'p1Chip');
+  } else if (emptySpace2 === 'p2Chip') {
+    let spaceAfterEnemeyChip = document.getElementById(`r${rowRef + 2}c${colRef + 2}`);
+    let checkEmptySpaceAfterEnemeyJump = spaceAfterEnemeyChip.getAttribute('content');
     if (checkEmptySpaceAfterEnemeyJump === 'empty') {
-      spaceAfterEnemyChip.setAttribute('content', 'p2Chip');
+      moveChoice1 = spaceAfterEnemeyChip;
+
+      //-------------------------EVENT HANDLER-----------------------------
+      spaceAfterEnemeyChip.setAttribute('content', 'p1Chip');
       curClickedPiece.setAttribute('content', 'empty');
       possMove1.setAttribute('content', 'empty');
-      p1Chips--;
-      // check if king -> make king event
-      // end p2 turn
+      p2Chips--;
+      //-------------------------EVENT HANDLER-----------------------------
+
     } else {
       alert('Invalid Move: must have empty space after enemy piece');
     }
@@ -246,25 +222,102 @@ function calcNonKingP2Spaces(rowRef, colRef) {
     alert('Invalid Move: space is occupied');
   }
   if (emptySpace2 === 'empty') {
+    moveChoice2 = possMove2;
+
+    //-------------------------EVENT HANDLER-----------------------------
     curClickedPiece.setAttribute('content', 'empty');
-    emptySpace1.setAttribute('content', 'p2Chip');
-    // end p2 turn
+    emptySpace2.setAttribute('content', 'p1Chip');
+    //-------------------------EVENT HANDLER-----------------------------
+
   } else if (emptySpace2 === 'p2Chip') {
-    let spaceAfterEnemyChip = document.getElementById(`r${rowRef - 2}c${colRef - 2}`);
+    let spaceAfterEnemyChip = document.getElementById(`r${rowRef - 2}c${colRef + 2}`);
     let checkEmptySpaceAfterEnemeyJump = spaceAfterEnemyChip.getAttribute('content');
     if (checkEmptySpaceAfterEnemeyJump === 'empty') {
-      spaceAfterEnemyChip.setAttribute('content', 'p2Chip');
+      moveChoice2 = spaceAfterEnemyChip;
+
+      //-------------------------EVENT HANDLER-----------------------------
+      spaceAfterEnemyChip.setAttribute('content', 'p1Chip');
       curClickedPiece.setAttribute('content', 'empty');
       possMove1.setAttribute('content', 'empty');
-      p1Chips--;
-      // check if king -> make king event
-      // end p2 turn
+      p2Chips--;
+      //-------------------------EVENT HANDLER-----------------------------
+
     } else {
       alert('Invalid Move: space is occupied');
     }
   } else {
     alert('Invalid Move: space is occupied');
   }
+  // my EL function - assign event listener
+  setSecondEventListener(moveChoice1, moveChoice2);
+
+}
+
+//-------------------------PLAYER 2-----------------------------
+function calcNonKingP2Spaces(rowRef, colRef) {
+  let curClickedPiece = document.getElementById(`r${rowRef}c${colRef}`);
+  let possMove1 = document.getElementById(`r${rowRef + 1}c${colRef - 1}`); // goes up and over
+  let possMove2 = document.getElementById(`r${rowRef - 1}c${colRef - 1}`); // goes down and over
+  let moveChoice1;
+  let moveChoice2;
+
+
+  let emptySpace1 = possMove1.getAttribute('content');
+  let emptySpace2 = possMove2.getAttribute('content');
+
+  if (emptySpace1 === 'empty') {
+    moveChoice1 = possMove1;
+
+    //-------------------------EVENT HANDLER-----------------------------
+    curClickedPiece.setAttribute('content', 'empty');
+    emptySpace1.setAttribute('content', 'p2Chip');
+    //-------------------------EVENT HANDLER-----------------------------
+  } else if (emptySpace2 === 'p1Chip') {
+    let spaceAfterEnemyChip = document.getElementById(`r${rowRef + 2}c${colRef - 2}`);
+    let checkEmptySpaceAfterEnemeyJump = spaceAfterEnemyChip.getAttribute('content');
+    if (checkEmptySpaceAfterEnemeyJump === 'empty') {
+      moveChoice1 = spaceAfterEnemyChip;
+
+      //-------------------------EVENT HANDLER-----------------------------
+      spaceAfterEnemyChip.setAttribute('content', 'p2Chip');
+      curClickedPiece.setAttribute('content', 'empty');
+      possMove1.setAttribute('content', 'empty');
+      p1Chips--;
+      //-------------------------EVENT HANDLER-----------------------------
+
+    } else {
+      alert('Invalid Move: must have empty space after enemy piece');
+    }
+  } else {
+    alert('Invalid Move: space is occupied');
+  }
+  if (emptySpace2 === 'empty') {
+    moveChoice2 = possMove2;
+    //-------------------------EVENT HANDLER----------------------------
+    curClickedPiece.setAttribute('content', 'empty');
+    emptySpace1.setAttribute('content', 'p2Chip');
+    //-------------------------EVENT HANDLER----------------------------
+
+  } else if (emptySpace2 === 'p2Chip') {
+    let spaceAfterEnemyChip = document.getElementById(`r${rowRef - 2}c${colRef - 2}`);
+    let checkEmptySpaceAfterEnemeyJump = spaceAfterEnemyChip.getAttribute('content');
+    if (checkEmptySpaceAfterEnemeyJump === 'empty') {
+      moveChoice2 = spaceAfterEnemyChip;
+
+      //-------------------------EVENT HANDLER----------------------------
+      spaceAfterEnemyChip.setAttribute('content', 'p2Chip');
+      curClickedPiece.setAttribute('content', 'empty');
+      possMove1.setAttribute('content', 'empty');
+      p1Chips--;
+      //-------------------------EVENT HANDLER----------------------------
+
+    } else {
+      alert('Invalid Move: space is occupied');
+    }
+  } else {
+    alert('Invalid Move: space is occupied');
+  }
+  setSecondEventListener(moveChoice1, moveChoice2);
 }
 
 function player1turn() {
