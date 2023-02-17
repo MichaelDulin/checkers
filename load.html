@@ -1,13 +1,15 @@
 <!-- pull from local storage to create new game or load one -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <link rel="stylesheet" href="css/styles.css">
   <link rel="reset" href="css/reset.css">
   <title>Checkers Game</title>
 </head>
+
 <body>
-  <h1>Checkers</h1>
+  <h1 id="loadtitle">Checkers</h1>
   <main>
     <div>
       <button id="continue-button">Continue Game</button>
@@ -37,8 +39,9 @@
 
       <button id="submit-player2" type="submit">Submit</button>
     </form>
-
-    <button id="start-game" disabled>Start Game</button>
+    <button>
+      <a href="game.html">Start Game</a>
+    </button>
 
   </main>
   <script src="./js/lp.js"></script>
