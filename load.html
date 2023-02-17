@@ -1,0 +1,52 @@
+<!-- pull from local storage to create new game or load one -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="reset" href="css/reset.css">
+  <title>Checkers Game</title>
+</head>
+
+<body>
+  <h1 id="loadtitle">Checkers</h1>
+  <main>
+    <div>
+      <button id="continue-button">Continue Game</button>
+    </div>
+    <form id="player1-form">
+      <label for="player1-name">Player 1 Name:</label>
+      <input type="text" id="player1-name" name="player1-name" required>
+
+      <label for="player1-color">Checker Color:</label>
+      <select id="player1-color" name="player1-color" required>
+        <option value=""></option>
+        <option value="red">Red</option>
+        <option value="black">Black</option>
+      </select>
+    </form>
+
+    <form id="player2-form">
+      <label for="player2-name">Player 2 Name:</label>
+      <input type="text" id="player2-name" name="player2-name" required>
+
+      <label for="player2-color">Checker Color:</label>
+      <select id="player2-color" name="player2-color" required>
+        <option value=""></option>
+        <option value="red">Red</option>
+        <option value="black">Black</option>
+      </select>
+
+      <button id="submit-player2" type="submit">Submit</button>
+    </form>
+    <button>
+      <a href="game.html">Start Game</a>
+    </button>
+
+  </main>
+  <script src="./js/lp.js"></script>
+</body>
+<footer>
+</footer>
+
+</html>

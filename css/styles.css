@@ -1,0 +1,361 @@
+@import url('https://fonts.googleapis.com/css?family=Orbitron');
+
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: grey;
+}
+
+/* h1 {
+  text-align: center;
+  border: 3px solid black;
+  height: 90px;
+  padding: 20px;
+  background-color: rgb(85, 85, 82);
+  /* margin-top: 25px; */
+
+/* } */ */
+
+h2 {
+  text-align: center;
+  border: 3px solid black;
+  background-color: rgb(85, 85, 82);
+  height: 90px;
+  padding: 20px;
+  font-size: x-large;
+  font-weight: bold;
+}
+
+/* home button for about us */
+.home-link {
+  display: flex;
+  font-family: 'Orbitron', sans-serif;
+  color: black;
+  font-size: 56px;
+  text-align: center;
+  background-color: rgb(255, 255, 255);
+  padding: 30px;
+  width: 300px;
+  border-bottom-right-radius: 30px;
+  margin-top: 10px;
+}
+
+.win-loss-list {
+  font-size: x-large;
+  margin-left: 43%;
+}
+
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.high-score,
+a {
+  color: black;
+  text-decoration: none;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* .about-section {
+  border: 3px solid black;
+  background-color: rgb(85, 85, 82);
+  padding-top: 50px;
+  font-weight: bold;
+  font-size: x-large;
+  height: 150px;
+  text-align: center;
+} */
+
+.idk {
+  border: 3px solid black;
+  background-color: rgb(85, 85, 82);
+}
+/*For index.html*/
+.homeinfo {
+  display: flex;
+  margin-left: 36%;
+  width: 800px;
+  font-size: 60px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.homeinfo #checkersHome {
+  font-size: 80px;
+  font-weight: 600;
+}
+
+/*For game.html*/
+.gameContainer {
+  display: grid;
+  grid-template-columns: 120px 120px 120px 120px 120px 120px 120px 120px;
+  grid-template-rows: 120px 120px 120px 120px 120px 120px 120px 120px;
+  justify-content: center;
+  background-color: black;
+  width: 960px;
+  height: 960px;
+  margin-left: auto;
+  margin-right:auto;
+  margin-top: 30px;
+  box-shadow: 2px 2px 8px 2px rgba(0, 0, 0, 0.4);
+}
+
+.gameContainer div:not([content]) {
+  background-color: white;
+}
+
+.gameContainer div {
+  border: 2px solid black;
+}
+
+.playable {
+  background-color: black;
+  inset: 80px black;
+  justify-content: center;
+}
+
+.playable[content="p1Chip"] {
+  background-color: gray; /* <--- need to pass this color in JS*/
+  height: 50px;
+  width: 50px;
+  margin:auto;
+  border: 2px solid white;
+  border-radius: 50%;
+}
+
+.playable[content="p2Chip"] {
+  background-color: rgb(154, 81, 81); /* <--- need to pass this color in JS*/
+  height: 50px;
+  width: 50px;
+  margin:auto;
+  border: 2px solid white;
+  border-radius: 50%;
+}
+
+.gameHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.gameHeader div {
+  background-color: white;
+  font-family: 'Orbitron', sans-serif;
+  color: black;
+  font-size: 30px;
+  text-align: center;
+  padding: 50px;
+  width: 200px;
+  border-bottom-left-radius: 30px;
+  box-shadow: 2px 2px 8px 2px rgba(0, 0, 0, 0.4);
+  border: 2px solid rgb(94, 94, 94);
+}
+
+.gameHeader #home {
+  border-bottom-right-radius: 30px;
+  border-bottom-left-radius: 0;
+}
+
+#timer {
+  font-family: 'Orbitron', sans-serif;
+  color: black;
+  font-size: 56px;
+  text-align: center;
+  background-color: rgb(255, 255, 255);
+  padding: 30px;
+  width: 300px;
+  border-bottom-right-radius: 30px;
+}
+
+.pNames {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pNames div {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 60px;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 2%;
+  margin-left: 10%;
+  margin-right: 10%;
+  padding: 30px;
+  width: auto;
+  min-width: 350px;
+  border-radius: 30px;
+  box-shadow: 2px 2px 8px 2px rgba(0, 0, 0, 0.4);
+  background-image: linear-gradient(45deg, #616161, #cfdbd5, #616161);
+  border: 2px solid rgb(94, 94, 94);
+}
+#aU {
+  display: flex;
+  justify-content: space-between;
+}
+
+#aU {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 60px;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 2%;
+  margin-left: 10%;
+  margin-right: 10%;
+  padding: 30px;
+  width: auto;
+  min-width: 350px;
+  border-radius: 30px;
+  box-shadow: 2px 2px 8px 2px rgba(0, 0, 0, 0.4);
+  background-image: linear-gradient(45deg, #616161, #cfdbd5, #616161);
+  border: 2px solid rgb(94, 94, 94);
+}
+
+/* about me page stuff start */
+
+#boDy {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+#htMl {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.column {
+  float: left;
+  width: 33.3%;
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: 8px;
+}
+
+.about-section {
+  padding: 50px;
+  text-align: center;
+  background-color: gray;
+  color: black;
+}
+
+.container2 {
+  padding: 0 16px;
+}
+
+.container2::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.title {
+  color: grey;
+}
+
+.button2 {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button2:hover {
+  background-color: #555;
+}
+
+@media screen and (max-width: 650px) {
+  .column {
+    width: 100%;
+    display: block;
+  }
+}
+
+#checkersHome {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 60px;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 2%;
+  margin-left: 10%;
+  margin-right: 10%;
+  padding: 30px;
+  width: auto;
+  min-width: 350px;
+  border-radius: 30px;
+  box-shadow: 2px 2px 8px 2px rgba(0, 0, 0, 0.4);
+  background-image: linear-gradient(45deg, #616161, #cfdbd5, #616161);
+  border: 2px solid rgb(94, 94, 94);
+}
+
+#highscore {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 60px;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 5%;
+  margin-left: 10%;
+  margin-right: 10%;
+  padding: 30px;
+  width: auto;
+  min-width: 350px;
+  border-radius: 30px;
+  box-shadow: 2px 2px 8px 2px rgba(0, 0, 0, 0.4);
+  background-image: linear-gradient(45deg, #616161, #cfdbd5, #616161);
+  border: 2px solid rgb(94, 94, 94);
+}
+
+.home-link {
+  background-color: white;
+  font-family: 'Orbitron', sans-serif;
+  color: black;
+  font-size: 30px;
+  text-align: center;
+  padding: 50px;
+  width: 200px;
+  border-bottom-left-radius: 30px;
+  box-shadow: 2px 2px 8px 2px rgba(0, 0, 0, 0.4);
+  border: 2px solid rgb(94, 94, 94);
+}
+
+#loadtitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 60px;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 5%;
+  margin-left: 10%;
+  margin-right: 10%;
+  padding: 30px;
+  width: auto;
+  min-width: 350px;
+  border-radius: 30px;
+  box-shadow: 2px 2px 8px 2px rgba(0, 0, 0, 0.4);
+  background-image: linear-gradient(45deg, #616161, #cfdbd5, #616161);
+  border: 2px solid rgb(94, 94, 94);
+}
