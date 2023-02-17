@@ -7,6 +7,7 @@
 
 let moveToSpace1;
 let moveToSpace2;
+let playerTurn = 1;
 
 
 //Done: Create virtual layout of board (playable vs unplayble spaces
@@ -316,28 +317,53 @@ function playerMove(event) {
   let list = text.match(/\d+/g);
   let rowRef = parseInt(list[0]);
   let colRef = parseInt(list[1]);
-  console.log(`r${rowRef}c${colRef}`);
-  console.log(`r${rowRef + 1}c${colRef + 1}`);
-  console.log(`r${rowRef - 1}c${colRef + 1}`);
   let curClickedPiece = document.getElementById(`r${rowRef}c${colRef}`);
-  let possMove1 = document.getElementById(`r${rowRef + 1}c${colRef + 1}`); // goes up and over
-  let possMove2 = document.getElementById(`r${rowRef - 1}c${colRef + 1}`); // goes down and over
+  let possMove1;
+  let possMove2;
+  if (playerTurn === 1) {
+    possMove1 = document.getElementById(`r${rowRef + 1}c${colRef + 1}`); // goes up and over
+    possMove2 = document.getElementById(`r${rowRef - 1}c${colRef + 1}`);
+  } else if (playerTurn === 2) {
+    possMove1 = document.getElementById(`r${rowRef + 1}c${colRef - 1}`); // goes up and over
+    possMove2 = document.getElementById(`r${rowRef - 1}c${colRef - 1}`);
+  }
   console.log('possMove1 = ', possMove1, 'possMove2 = ', possMove2);
-  curClickedPiece.setAttribute('content', 'empty');
-  moveToSpace1 = possMove1;
-  moveToSpace2 = possMove2;
-  player1end();
-  setSecondEventListener(possMove1, possMove2);
+  let possMove1Attr = possMove1.getAttribute('content');
+  let possMove2Attr = possMove2.getAttribute('content');
+  console.log(possMove1.className);
+  if (possMove1Attr !== 'empty' || possMove2Attr !== 'empty'){ // change to check both values (if on border)
+    alert('Cannot move there. Try again');
+  } else {
+    curClickedPiece.setAttribute('content', 'empty');
+    moveToSpace1 = possMove1;
+    moveToSpace2 = possMove2;
+    if (playerTurn === 2) {
+      player2end();
+      setSecondEventListener(moveToSpace1, moveToSpace2);
+    } else {
+      player1end();
+      setSecondEventListener(moveToSpace1, moveToSpace2);
+    }
+
+  }
 }
 
 function secondEventClick(event) {
   console.log('second event listener fired');
   console.log(event.target.id);
   console.log(moveToSpace1, moveToSpace2);
-  if (event.target.id === moveToSpace1.id){
-    moveToSpace1.setAttribute('content','p1Chip');
-  } else if (event.target.id === moveToSpace2.id) {
-    moveToSpace2.setAttribute('content','p1Chip');
+  if (playerTurn === 1) {
+    if (event.target.id === moveToSpace1.id){
+      moveToSpace1.setAttribute('content','p1Chip');
+    } else if (event.target.id === moveToSpace2.id) {
+      moveToSpace2.setAttribute('content','p1Chip');
+    }
+  } else if (playerTurn === 2) {
+    if (event.target.id === moveToSpace1.id){
+      moveToSpace1.setAttribute('content','p2Chip');
+    } else if (event.target.id === moveToSpace2.id) {
+      moveToSpace2.setAttribute('content','p2Chip');
+    }
   }
   console.log(event);
   removeELTwo();
@@ -346,7 +372,11 @@ function secondEventClick(event) {
 function removeELTwo() {
   moveToSpace1.removeEventListener('click', secondEventClick);
   moveToSpace2.removeEventListener('click', secondEventClick);
-  player1turn();
+  if (playerTurn === 1) {
+    player2turn();
+  } else if (playerTurn === 2){
+    player1turn();
+  }
 }
 
 
@@ -359,6 +389,7 @@ function setSecondEventListener(move1, move2) {
 
 
 function player1turn() {
+  playerTurn = 1;
   let allP1Chips = document.querySelectorAll('[content="p1Chip"]');
   for (let i = 0; i < allP1Chips.length; i++) {
     let curIndex = allP1Chips[i];
@@ -372,20 +403,21 @@ function player1end() {
     curIndex.removeEventListener('click', playerMove); //remove event listener
   }
 }
-// function player2turn() {
-//   let allP2Chips = document.querySelectorAll('[content="p2Chip"]');
-//   for (let i = 0; i < allP2Chips.length; i++) {
-//     let curIndex = allP2Chips[i];
-//     curIndex.addEventListener('click', playerMove);
-//   }
-// }
-// function player2end() {
-//   let allP2Chips = document.querySelectorAll('[content="p2Chip"]');
-//   for (let i = 0; i < allP2Chips.length; i++) {
-//     let curIndex = allP2Chips[i];
-//     curIndex.removeEventListener('click', playerMove); //remove event listener
-//   }
-// }
+function player2turn() {
+  playerTurn = 2;
+  let allP2Chips = document.querySelectorAll('[content="p2Chip"]');
+  for (let i = 0; i < allP2Chips.length; i++) {
+    let curIndex = allP2Chips[i];
+    curIndex.addEventListener('click', playerMove);
+  }
+}
+function player2end() {
+  let allP2Chips = document.querySelectorAll('[content="p2Chip"]');
+  for (let i = 0; i < allP2Chips.length; i++) {
+    let curIndex = allP2Chips[i];
+    curIndex.removeEventListener('click', playerMove); //remove event listener
+  }
+}
 
 
 
