@@ -7,6 +7,8 @@
 
 let moveToSpace1;
 let moveToSpace2;
+let jump1;
+let jump2;
 let playerTurn = 1;
 
 
@@ -132,42 +134,42 @@ player1turn();
 //   // handle end of game
 // }
 
-// function playerMove(event) {
-//   let curId = event.target.id;
-//   let contentValue = curId.getAttribute('content');
-//   let text = event.target.id;
-//   let list = text.match(/\d+/g);
-//   let rowRef = list[0];
-//   let colRef = list[1];
-//   if (contentValue === 'p1Chip') {
-//     playerTurn = 1;
-//     //calcNonKingP1Spaces(playerTurn, rowRef, colRef);
-//   } else if (contentValue === 'p2Chip') {
-//     playerTurn = 2;
-//     //calcNonKingP2Spaces(playerTurn, rowRef, colRef);
-//   }
-// }
+function playerMove(event) {
+  let curId = event.target.id;
+  let contentValue = curId.getAttribute('content');
+  let text = event.target.id;
+  let list = text.match(/\d+/g);
+  let rowRef = list[0];
+  let colRef = list[1];
+  if (contentValue === 'p1Chip') {
+    playerTurn = 1;
+    //calcNonKingP1Spaces(playerTurn, rowRef, colRef);
+  } else if (contentValue === 'p2Chip') {
+    playerTurn = 2;
+    //calcNonKingP2Spaces(playerTurn, rowRef, colRef);
+  }
+}
 
-// function setSecondEventListener(move1, move2, jumpMove1, jumpMove2) {
-//   // decide who is p1 or p2
-//   if (playerTurn === 1) {
-//     player1end();
-//   }else{
-//     player2end();
-//   }
-//   if (jumpMove1 === true || jumpMove2 === true) {
+function setSecondEventListener(move1, move2, jumpMove1, jumpMove2) {
+  // decide who is p1 or p2
+  if (playerTurn === 1) {
+    player1end();
+  } else {
+    player2end();
+  }
+  if (jumpMove1 === true || jumpMove2 === true) {
 
-//   } else {
+  } else {
 
-//   }
-//   move1.addEventListener('click', secondEventClick);
-//   move2.addEventListener('click', secondEventClick);
-// }
+  }
+  move1.addEventListener('click', secondEventClick);
+  move2.addEventListener('click', secondEventClick);
+}
 
-// function secondEventClick(event) {  //How to get values here (for kill jump)
-//   // normal move
+function secondEventClick(event) {  //How to get values here (for kill jump)
+  // normal move
 
-// }
+}
 
 // //-------------------------PLAYER 1-----------------------------
 // function calcNonKingP1Spaces(rowRef, colRef) {
@@ -320,61 +322,81 @@ function playerMove(event) {
   let curClickedPiece = document.getElementById(`r${rowRef}c${colRef}`);
   let possMove1;
   let possMove2;
+  let possjump1;
+  let possjump2;
   if (playerTurn === 1) {
     possMove1 = document.getElementById(`r${rowRef + 1}c${colRef + 1}`); // goes up and over
     possMove2 = document.getElementById(`r${rowRef - 1}c${colRef + 1}`);
+    possjump1 = document.getElementById(`r${rowRef + 2}c${colRef + 2}`); // double jump
+    possjump2 = document.getElementById(`r${rowRef - 2}c${colRef + 2}`);
   } else if (playerTurn === 2) {
     possMove1 = document.getElementById(`r${rowRef + 1}c${colRef - 1}`); // goes up and over
     possMove2 = document.getElementById(`r${rowRef - 1}c${colRef - 1}`);
+    possjump1 = document.getElementById(`r${rowRef + 2}c${colRef - 2}`); // double jump
+    possjump2 = document.getElementById(`r${rowRef - 2}c${colRef - 2}`);
   }
   console.log('possMove1 = ', possMove1, 'possMove2 = ', possMove2);
   let possMove1Attr = possMove1.getAttribute('content');
   let possMove2Attr = possMove2.getAttribute('content');
   console.log(possMove1.className);
-  if (possMove1Attr !== 'empty' || possMove2Attr !== 'empty'){ // change to check both values (if on border)
+  if (possMove1Attr !== 'empty' && possMove2Attr !== 'empty') { // change to check both values (if on border)
     alert('Cannot move there. Try again');
-  } else {
+  }
+  else {
     curClickedPiece.setAttribute('content', 'empty');
     moveToSpace1 = possMove1;
     moveToSpace2 = possMove2;
+    jump1 = possjump1;
+    jump2 = possjump2;
     if (playerTurn === 2) {
       player2end();
-      setSecondEventListener(moveToSpace1, moveToSpace2);
+      setSecondEventListener(moveToSpace1, moveToSpace2, jump1, jump2);
     } else {
       player1end();
-      setSecondEventListener(moveToSpace1, moveToSpace2);
+      setSecondEventListener(moveToSpace1, moveToSpace2, jump1, jump2);
     }
 
   }
 }
 
 function secondEventClick(event) {
-  console.log('second event listener fired');
+  console.log('second event listener start');
   console.log(event.target.id);
   console.log(moveToSpace1, moveToSpace2);
   if (playerTurn === 1) {
-    if (event.target.id === moveToSpace1.id){
-      moveToSpace1.setAttribute('content','p1Chip');
+    if (event.target.id === moveToSpace1.id) {
+      moveToSpace1.setAttribute('content', 'p1Chip');
     } else if (event.target.id === moveToSpace2.id) {
-      moveToSpace2.setAttribute('content','p1Chip');
+      moveToSpace2.setAttribute('content', 'p1Chip');
+    } else if (event.target.id === jump1.id) {
+      jump1.setAttribute('content', 'p1Chip')
+    } else if (event.target.id === jump2.id) {
+      jump2.setAttribute('content', 'p1Chip')
     }
   } else if (playerTurn === 2) {
-    if (event.target.id === moveToSpace1.id){
-      moveToSpace1.setAttribute('content','p2Chip');
+    if (event.target.id === moveToSpace1.id) {
+      moveToSpace1.setAttribute('content', 'p2Chip');
     } else if (event.target.id === moveToSpace2.id) {
-      moveToSpace2.setAttribute('content','p2Chip');
+      moveToSpace2.setAttribute('content', 'p2Chip');
+    } else if (event.target.id === jump1.id) {
+      jump1.setAttribute('content', 'p2Chip')
+    } else if (event.target.id === jump2.id) {
+      jump2.setAttribute('content', 'p2Chip')
     }
   }
   console.log(event);
+  console.log('second click event complete')
   removeELTwo();
 }
 
 function removeELTwo() {
   moveToSpace1.removeEventListener('click', secondEventClick);
   moveToSpace2.removeEventListener('click', secondEventClick);
+  jump1.removeEventListener('click', secondEventClick);
+  jump2.removeEventListener('click', secondEventClick);
   if (playerTurn === 1) {
     player2turn();
-  } else if (playerTurn === 2){
+  } else if (playerTurn === 2) {
     player1turn();
   }
 }
@@ -383,7 +405,7 @@ function removeELTwo() {
 function setSecondEventListener(move1, move2) {
   move1.addEventListener('click', secondEventClick);
   move2.addEventListener('click', secondEventClick);
-  console.log('move1 and move2: ',move1, move2);
+  console.log('move1 and move2: ', move1, move2);
 }
 
 
@@ -420,6 +442,8 @@ function player2end() {
 }
 
 
+
+// console.log(event);
 
 
 
