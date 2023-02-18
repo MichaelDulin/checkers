@@ -133,44 +133,6 @@ player1turn();
 //   }
 //   // handle end of game
 // }
-
-function playerMove(event) {
-  let curId = event.target.id;
-  let contentValue = curId.getAttribute('content');
-  let text = event.target.id;
-  let list = text.match(/\d+/g);
-  let rowRef = list[0];
-  let colRef = list[1];
-  if (contentValue === 'p1Chip') {
-    playerTurn = 1;
-    //calcNonKingP1Spaces(playerTurn, rowRef, colRef);
-  } else if (contentValue === 'p2Chip') {
-    playerTurn = 2;
-    //calcNonKingP2Spaces(playerTurn, rowRef, colRef);
-  }
-}
-
-function setSecondEventListener(move1, move2, jumpMove1, jumpMove2) {
-  // decide who is p1 or p2
-  if (playerTurn === 1) {
-    player1end();
-  } else {
-    player2end();
-  }
-  if (jumpMove1 === true || jumpMove2 === true) {
-
-  } else {
-
-  }
-  move1.addEventListener('click', secondEventClick);
-  move2.addEventListener('click', secondEventClick);
-}
-
-function secondEventClick(event) {  //How to get values here (for kill jump)
-  // normal move
-
-}
-
 // //-------------------------PLAYER 1-----------------------------
 // function calcNonKingP1Spaces(rowRef, colRef) {
 //   let curClickedPiece = document.getElementById(`r${rowRef}c${colRef}`);
@@ -369,9 +331,9 @@ function secondEventClick(event) {
     } else if (event.target.id === moveToSpace2.id) {
       moveToSpace2.setAttribute('content', 'p1Chip');
     } else if (event.target.id === jump1.id) {
-      jump1.setAttribute('content', 'p1Chip')
+      jump1.setAttribute('content', 'p1Chip');
     } else if (event.target.id === jump2.id) {
-      jump2.setAttribute('content', 'p1Chip')
+      jump2.setAttribute('content', 'p1Chip');
     }
   } else if (playerTurn === 2) {
     if (event.target.id === moveToSpace1.id) {
@@ -379,13 +341,13 @@ function secondEventClick(event) {
     } else if (event.target.id === moveToSpace2.id) {
       moveToSpace2.setAttribute('content', 'p2Chip');
     } else if (event.target.id === jump1.id) {
-      jump1.setAttribute('content', 'p2Chip')
+      jump1.setAttribute('content', 'p2Chip');
     } else if (event.target.id === jump2.id) {
-      jump2.setAttribute('content', 'p2Chip')
+      jump2.setAttribute('content', 'p2Chip');
     }
   }
   console.log(event);
-  console.log('second click event complete')
+  console.log('second click event complete');
   removeELTwo();
 }
 
@@ -471,7 +433,6 @@ EVENT LISTENER:
 While {
 1. eventlistener1 = first click of chip (pick up chip -> check for availablity (highlight avialability))
 2. eventlistenr2 = second click of chip (place chip IF space available)
-
 3. Enable eventListener1 for p1Chips
   - enable clickablity of p1Chips
   - check for availabilty and highlight
@@ -483,6 +444,4 @@ While {
 6. continue until no chips left
 }
 handle game end();
-
   */
-
